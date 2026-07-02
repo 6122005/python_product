@@ -100,3 +100,16 @@ streamlit run frontend/app.py
 - Success notification
 - Error handling with try/except
 - Improved user experience
+
+
+
+
+## Day 39 Progress
+
+### New Features
+
+- Reply history using Streamlit Session State
+- Stores the latest 5 generated replies
+- Expandable history section
+- Built-in copy button for each reply using `st.code()`
+- Clear History button
