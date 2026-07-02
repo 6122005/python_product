@@ -17,13 +17,34 @@ from core import generate_reply
 st.title("WhatsPilot AI")
 
 message = st.text_area(
-    "Enter WhatsApp Message"
+    "Enter WhatsApp Message",
+    height=180,
+    placeholder="Type the incoming WhatsApp message here..."
 )
 
 if st.button("Generate Reply"):
 
-    reply = generate_reply(message)
+    # Empty input validation
+    if not message.strip():
+        st.error("Please enter a message.")
+    
+    # Character limit
+    elif len(message) > 500:
+        st.error("Message is too long. Maximum 500 characters.")
 
-    st.subheader("Generated Reply")
+    else:
+        try:
 
-    st.write(reply)
+            with st.spinner("Generating reply..."):
+
+                reply = generate_reply(message)
+
+            st.success("Reply generated successfully!")
+
+            st.subheader("Generated Reply")
+
+            st.write(reply)
+
+        except Exception as e:
+
+            st.error(f"Something went wrong:\n{e}")
